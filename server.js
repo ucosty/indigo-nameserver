@@ -51,15 +51,15 @@ logs.loadDatabase(function(err) {
 // ------------------------------------------------------------------
 // Spawn the DNS Server
 // ------------------------------------------------------------------
-server.listen(9999, '0.0.0.0', function() {
-  console.log('DNS server started on port 9999');
+server.listen(config.dns_port, config.bind, function() {
+  console.log('DNS server started on', config.bind + ':' + config.dns_port);
 });
 
 // ------------------------------------------------------------------
 // Spawn the management interface
 // ------------------------------------------------------------------
-webServer.listen(config["management_port"], function () {
-  console.log('DNS Management interface started on port', config.management_port);
+webServer.listen(config.management_port, config.bind, function () {
+  console.log('DNS Management interface started on port', config.bind + ':' +config.management_port);
 });
 
 // Export the public directory
