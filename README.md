@@ -3,7 +3,7 @@ Indigo Nameserver
 
 The Indigo Nameserver is a DNS server, written in Javascript. It is intended as a more powerful alternative to modifying hosts file entries.
 
-[Imgur](http://i.imgur.com/9aFN5C4.png)
+<img src="http://i.imgur.com/9aFN5C4.png">
 
 Getting Started
 ---------------
