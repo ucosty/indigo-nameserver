@@ -1,0 +1,17 @@
+<table class="table" ng-controller="logsController">
+	<thead>
+		<tr>
+			<th>Time</th>
+			<th>Type</th>
+			<th>Domain</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="log in logs">
+			<td>{{log.time}}</td>
+			<td>{{log.type}}</td>
+			<td>{{log.domain}}</td>
+			<td>{{log.value}}</td>
+		</tr>
+	</tbody>
+</table>

@@ -1,0 +1,56 @@
+<div class="row" ng-controller="recordsController">
+	<div class="col-md-8">
+		<table class="table">
+			<thead>
+				<tr>
+					<th style="width: 50px;">Type</th>
+					<th style="width: 40%;">Domain</th>
+					<th>Value</th>
+					<th style="width: 80px;">Remove</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="record in records">
+					<td>{{record.type}}</td>
+					<td><a href="#" editable-text="record.domain" onaftersave="update(record)">{{ record.domain }}</a></td>
+					<td><a href="#" editable-text="record.value" onaftersave="update(record)">{{ record.value }}</a></td>
+					<td><button class="btn btn-xs btn-danger" ng-click="delete(record._id)">Remove</button></td>
+				</tr>
+			</tbody>
+		</table>
+	</div> <!-- Column -->
+
+	<div class="col-md-4">
+		<div class="well">
+			<form>
+				<div class="form-group">
+				    <label for="type">Record Type</label>
+				    <select class="form-control" ng-model="newRecord.type">
+				    	<option>A</option>
+						<option>AAAA</option>
+						<option>CNAME</option>
+						<option>MX</option>
+						<option>SOA</option>
+						<option>SRV</option>
+						<option>TXT</option>
+				    </select>
+				</div>
+				<div class="form-group">
+				    <label for="domain">Domain</label>
+				    <input type="text" class="form-control" id="domain" placeholder="example.com" ng-model="newRecord.domain">
+				</div>
+				<div class="form-group">
+				    <label for="value">{{valueLabels[newRecord.type]}}</label>
+				    <input type="text" class="form-control" id="value" placeholder="1.2.3.4" ng-model="newRecord.value">
+				</div>
+				<div class="form-group" ng-show="newRecord.type == 'SRV'">
+				    <label for="port">SRV Port</label>
+				    <input type="text" class="form-control" id="port" placeholder="8080" ng-model="newRecord.port">
+				</div>
+				<div class="form-group">
+					<button class="btn btn-primary" ng-click="create()">Create</button>
+				</div>
+			</form>
+		</div>
+	</div> <!-- Column -->
+</div> <!-- Row -->

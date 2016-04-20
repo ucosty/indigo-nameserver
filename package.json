@@ -1,0 +1,13 @@
+{
+  "name": "dns-server",
+  "author": "Matthew Costa <ucosty@gmail.com>",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "influx": "^4.1.0",
+    "nedb": "^1.8.0",
+    "node-named": "0.0.1"
+  }
+}
