@@ -27,6 +27,7 @@ Features
 - DNS lookup activity logs
 - Basic web interface
 - Basic REST api
+- Configurable upstream/fallback DNS server
 
 Wishlist
 --------

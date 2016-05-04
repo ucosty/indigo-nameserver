@@ -16,7 +16,9 @@
 */
 
 // Application Configuration
-var config = require('./config');
+var fs = require('fs');
+var configFile = 'config.json';
+var config = JSON.parse(fs.readFileSync(configFile, 'utf8'));
 
 // Data Persistence Layer
 var Datastore = require('nedb');
@@ -40,6 +42,18 @@ var createRecord = require('./createRecord.js');
 
 // Logo generator
 var logo = require('./logo')();
+
+// ------------------------------------------------------------------
+// Load the database
+// ------------------------------------------------------------------
+if(config.upstream_dns) {
+	console.log("Using " + config.upstream_dns + " for upstream name resolution");
+	if(config.upstream_dns instanceof String) {
+		dns.setServers([config.upstream_dns]);
+	} else if(config.upstream_dns instanceof Array) {
+		dns.setServers(config.upstream_dns);
+	}
+}
 
 // ------------------------------------------------------------------
 // Load the database
@@ -112,6 +126,20 @@ webServer.post("/api/records/:id", function(req, res) {
 webServer.get("/api/logs", function(req, res) {
 	logs.find({}).sort({ time: -1}).exec(function (err, docs) {
 		res.send(docs);
+	});
+});
+
+webServer.get("/api/config", function(req, res) {
+	res.send(config);
+});
+
+webServer.post("/api/config", function(req, res) {
+	var updated_configuration = req.body;
+	for(key in updated_configuration) {
+		config[key] = updated_configuration[key];
+	}
+	fs.writeFile(configFile, JSON.stringify(config), function() {
+		res.send(config);
 	});
 });
 

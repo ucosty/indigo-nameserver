@@ -1,0 +1,28 @@
+<div ng-controller="settingsController">
+	<h2>Settings</h2>
+	<div class="well">
+		<div class="form-group">
+			<label>Upstream DNS Resolver</label>
+			<input class="form-control" type="text" name="upstream_dns" ng-model="config.upstream_dns">
+		</div>
+
+		<div class="form-group">
+			<label>Bind Address</label>
+			<input class="form-control" type="text" name="bind" ng-model="config.bind">
+		</div>
+
+		<div class="form-group">
+			<label>Managenent Port</label>
+			<input class="form-control" type="text" name="management_port" ng-model="config.management_port">
+		</div>
+
+		<div class="form-group">
+			<label>DNS Port</label>
+			<input class="form-control" type="text" name="dns_port" ng-model="config.dns_port">
+		</div>
+
+		<div class="form-group">
+			<button class="btn btn-primary" ng-click="update()">Save</button>
+		</div>
+	</div>
+</div>

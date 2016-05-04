@@ -29,7 +29,10 @@ indigoApp.config(['$routeProvider',
         templateUrl: 'views/logs.html'
       }).
       when('/home', {
-        templateUrl: 'views/records.html',
+        templateUrl: 'views/records.html'
+      }).
+      when('/settings', {
+        templateUrl: 'views/settings.html'
       }).
       otherwise({
         redirectTo: 'home'
@@ -58,6 +61,18 @@ indigoApp.factory('logsBackend', function ($http) {
 	var backend = {
 		get: function () {
 			return $http.get("/api/logs");
+		}
+	};
+	return backend;
+});
+
+indigoApp.factory('configBackend', function ($http) {
+	var backend = {
+		get: function () {
+			return $http.get("/api/config");
+		},
+		update: function(config) {
+			return $http.post("/api/config/", config);
 		}
 	};
 	return backend;
@@ -112,4 +127,23 @@ indigoApp.controller("logsController", function($scope, logsBackend) {
 		});
 	}
 	$scope.refresh();
+});
+
+
+indigoApp.controller("settingsController", function($scope, configBackend) {
+	$scope.config = {};
+	$scope.response = {};
+
+	$scope.refresh = function() {
+		configBackend.get().then(function(results) {
+			$scope.config = results.data;
+		});
+	}
+	$scope.refresh();
+
+	$scope.update = function() {
+		configBackend.update($scope.config).then(function() {
+			$scope.response = results.data;
+		});
+	}
 });
