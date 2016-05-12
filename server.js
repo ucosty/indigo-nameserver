@@ -162,9 +162,11 @@ server.on('query', function(query) {
 			server.send(query);
 		} else {
 			dns.resolve(domain, type, function(err, addresses) {
-				addresses.forEach(function(address) {
-					createRecord(query, domain, type, address, 0)
-				});
+				if(typeof addresses !== 'undefined') {
+					addresses.forEach(function(address) {
+						createRecord(query, domain, type, address, 0)
+					});
+				}
 				server.send(query);
 			});
 		}
