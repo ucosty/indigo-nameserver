@@ -45,6 +45,7 @@ Wishlist
   - DNS entry creation from logs
 - InfluxDB support for nice statistics gathering
 - Command line interface 
+- Upgrade to Angular 2
 
 REST API
 --------
@@ -90,3 +91,30 @@ POST /api/records/
 #### Get all activity logs
 ```[GET] /api/logs```
 
+#### Get server configuration
+``` [GET] /api/config```
+
+Returns a JSON object containing the current configuration of the server
+
+By default, the configuration object returned will look like
+```JSON
+{
+    "bind": "0.0.0.0",
+    "dns_port": 9999,
+    "management_port": 9998,
+    "database": "indigo.db",
+    "logs": "logs.db",
+    "upstream_dns": "8.8.8.8"
+}
+```
+
+#### Set server configuration
+``` [POST] /api/config```
+
+Updates the configuration object. It is not necessary to send the whole configuration object in the POST body, only updated fields need to be sent. For example, to update the bind addres you would send the following JSON object as the body of the request 
+
+```JSON
+{
+	"bind": "127.0.0.1"
+}
+```
