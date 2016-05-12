@@ -28,6 +28,7 @@ Features
 - Basic web interface
 - Basic REST api
 - Configurable upstream/fallback DNS server
+- Docker container for easier deployment
 
 Wishlist
 --------
@@ -37,7 +38,6 @@ Wishlist
 - Wildcard support
 - Better local host integration support
 - Vagrant plugin
-- Docker container for easier deployment
 - REST API security
 - Web interface improvements
   - Column sorting
